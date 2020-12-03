@@ -9,8 +9,13 @@ warnings.filterwarnings("ignore")
 data = pd.read_csv("dataset2.csv")
 
 # ANOVA
-F = AnovaRM(data, depvar= "time",subject = "user", within= ["menu"]).fit()
-print("\nANOVA Within Subjects:\n", F)
+#Using Independent VAriable: time
+F_time = AnovaRM(data, depvar= "time",subject = "user", within= ["menu"]).fit()
+print("\nANOVA Within Subjects for Independent Variable:time:\n", F_time)
+
+#Using Independent VAriable: error
+F_error = AnovaRM(data, depvar= "error",subject = "user", within= ["menu"]).fit()
+print("\nANOVA Within Subjects for Independent Variable: error:\n", F_error)
 
 # Pairwise t-test
 df = dict(list(data.groupby(["menu"])))
